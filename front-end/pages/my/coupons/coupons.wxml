@@ -1,0 +1,204 @@
+<block wx:for="{{coupons_useful}}" wx:key="unique">
+  <view class="coupon" wx:if="{{item['优惠内容']['券类型名称'] == '满减券'}}">
+    <view class="body">
+      <view class="gap"></view>
+      <view class="logo">减</view>
+      <view class="title">满减券</view>
+      <view class="detail">全场可用</view>
+      <view class="reason strong-stress">{{item['得券原因']}}</view>
+      <view class="bar"></view>
+      <view class="type-0">
+        <!-- 满减类 -->
+        <view class="currency">￥</view>
+        <view class="money">
+          <view class="integer">{{item['优惠内容']['优惠整数']}}</view>
+          <view class="decimal" wx:if="{{item['优惠内容']['优惠整数'] < 10}}">.{{item['优惠内容']['优惠小数']}}</view>
+        </view>
+        <view class="require">满{{item['优惠内容']['价格要求']}}元可用</view>
+      </view>
+    </view>
+    <view class="button-word">有效期：{{item['有效期']['生效日期']}} 至 {{item['有效期']['失效日期']}}</view>
+  </view>
+
+  <view class="coupon" wx:if="{{item['优惠内容']['券类型名称'] == '商品券'}}">
+    <view class="body">
+      <view class="gap"></view>
+      <view class="logo">品</view>
+      <view class="title">商品券</view>
+      <view class="detail">限<text class="light-stress">{{item['优惠内容']['商品名']}}</text>使用</view>
+      <view class="reason strong-stress">{{item['得券原因']}}</view>
+      <view class="bar"></view>
+      <view class="type-1">
+        <!-- 打折类 -->
+        <view class="char">折</view>
+        <view class="integer">{{item['优惠内容']['优惠整数']}}</view>
+        <view class="decimal">.{{item['优惠内容']['优惠小数']}}</view>
+      </view>
+    </view>
+    <view class="button-word">有效期：{{item['有效期']['生效日期']}} 至 {{item['有效期']['失效日期']}}</view>
+  </view>
+
+  <view class="coupon" wx:if="{{item['优惠内容']['券类型名称'] == '类目券'}}">
+    <view class="body">
+      <view class="gap"></view>
+      <view class="logo">类</view>
+      <view class="title">类目券</view>
+      <view class="detail">限<text class="light-stress">{{item['优惠内容']['类目名']}}</text>使用</view>
+      <view class="reason strong-stress">{{item['得券原因']}}</view>
+      <view class="bar"></view>
+      <view class="type-1">
+        <!-- 打折类 -->
+        <view class="char">折</view>
+        <view class="integer">{{item['优惠内容']['优惠整数']}}</view>
+        <view class="decimal">.{{item['优惠内容']['优惠小数']}}</view>
+      </view>
+    </view>
+    <view class="button-word">有效期：{{item['有效期']['生效日期']}} 至 {{item['有效期']['失效日期']}}</view>
+  </view>
+</block>
+
+<block wx:if="{{coupons_nottoday.length !=0 }}">
+  <view class="ui divider hidden big"></view>
+  <view class="coupons divider">
+    <view class="line"></view>
+    <text>未生效</text>
+    <view class="line"></view>
+  </view>
+  <view class="ui divider hidden"></view>
+  <block wx:for="{{coupons_nottoday}}" wx:key="unique">
+    <view class="coupon" wx:if="{{item['优惠内容']['券类型名称'] == '满减券'}}">
+      <view class="body">
+        <view class="logo">减</view>
+        <view class="title">满减券</view>
+        <view class="detail">全场可用</view>
+        <view class="reason strong-stress">{{item['得券原因']}}</view>
+        <view class="bar"></view>
+        <view class="type-0">
+          <!-- 满减类 -->
+          <view class="currency">￥</view>
+          <view class="money">
+            <view class="integer">{{item['优惠内容']['优惠整数']}}</view>
+            <view class="decimal" wx:if="{{item['优惠内容']['优惠整数'] < 10}}">.{{item['优惠内容']['优惠小数']}}</view>
+          </view>
+          <view class="require">满{{item['优惠内容']['价格要求']}}元可用</view>
+        </view>
+      </view>
+      <view class="button-word">有效期：{{item['有效期']['生效日期']}} 至 {{item['有效期']['失效日期']}}</view>
+      <view class="disabled-cover"></view>
+      <view class="gap"></view>
+    </view>
+
+    <view class="coupon" wx:if="{{item['优惠内容']['券类型名称'] == '商品券'}}">
+      <view class="body">
+        <view class="logo">品</view>
+        <view class="title">商品券</view>
+        <view class="detail">限<text class="light-stress">{{item['优惠内容']['商品名']}}</text>使用</view>
+        <view class="reason strong-stress">{{item['得券原因']}}</view>
+        <view class="bar"></view>
+        <view class="type-1">
+          <!-- 打折类 -->
+          <view class="char">折</view>
+          <view class="integer">{{item['优惠内容']['优惠整数']}}</view>
+          <view class="decimal">.{{item['优惠内容']['优惠小数']}}</view>
+        </view>
+      </view>
+      <view class="button-word">有效期：{{item['有效期']['生效日期']}} 至 {{item['有效期']['失效日期']}}</view>
+      
+      <view class="disabled-cover"></view>
+      <view class="gap"></view>
+    </view>
+
+    <view class="coupon" wx:if="{{item['优惠内容']['券类型名称'] == '类目券'}}">
+      <view class="body">
+        <view class="logo">类</view>
+        <view class="title">类目券</view>
+        <view class="detail">限<text class="light-stress">{{item['优惠内容']['类目名']}}</text>使用</view>
+        <view class="reason strong-stress">{{item['得券原因']}}</view>
+        <view class="bar"></view>
+        <view class="type-1">
+          <!-- 打折类 -->
+          <view class="char">折</view>
+          <view class="integer">{{item['优惠内容']['优惠整数']}}</view>
+          <view class="decimal">.{{item['优惠内容']['优惠小数']}}</view>
+        </view>
+      </view>
+      <view class="button-word">有效期：{{item['有效期']['生效日期']}} 至 {{item['有效期']['失效日期']}}</view>
+      <view class="disabled-cover"></view>
+      <view class="gap"></view>
+    </view>
+  </block>
+</block>
+
+<block wx:if="{{coupons_unavailable.length !=0 }}">
+  <view class="ui divider hidden big"></view>
+  <view class="coupons divider">
+    <view class="line"></view>
+    <text>已用或已失效</text>
+    <view class="line"></view>
+  </view>
+  <view class="ui divider hidden"></view>
+  <block wx:for="{{coupons_unavailable}}" wx:key="unique">
+    <view class="coupon disabled" wx:if="{{item['优惠内容']['券类型名称'] == '满减券'}}">
+      <view class="body">
+        <view class="logo">减</view>
+        <view class="title">满减券</view>
+        <view class="detail">全场可用</view>
+        <view class="reason strong-stress">{{item['得券原因']}}</view>
+        <view class="bar"></view>
+        <view class="type-0">
+          <!-- 满减类 -->
+          <view class="currency">￥</view>
+          <view class="money">
+            <view class="integer">{{item['优惠内容']['优惠整数']}}</view>
+            <view class="decimal" wx:if="{{item['优惠内容']['优惠整数'] < 10}}">.{{item['优惠内容']['优惠小数']}}</view>
+          </view>
+          <view class="require">满{{item['优惠内容']['价格要求']}}元可用</view>
+        </view>
+      </view>
+      <view class="button-word">有效期：{{item['有效期']['生效日期']}} 至 {{item['有效期']['失效日期']}}</view>
+      <view class="gap"></view>
+    </view>
+
+    <view class="coupon disabled" wx:if="{{item['优惠内容']['券类型名称'] == '商品券'}}">
+      <view class="body">
+        <view class="logo">品</view>
+        <view class="title">商品券</view>
+        <view class="detail">限<text class="light-stress">{{item['优惠内容']['商品名']}}</text>使用</view>
+        <view class="reason strong-stress">{{item['得券原因']}}</view>
+        <view class="bar"></view>
+        <view class="type-1">
+          <!-- 打折类 -->
+          <view class="char">折</view>
+          <view class="integer">{{item['优惠内容']['优惠整数']}}</view>
+          <view class="decimal">.{{item['优惠内容']['优惠小数']}}</view>
+        </view>
+      </view>
+      <view class="button-word">有效期：{{item['有效期']['生效日期']}} 至 {{item['有效期']['失效日期']}}</view>
+      <view class="gap"></view>
+    </view>
+
+    <view class="coupon disabled" wx:if="{{item['优惠内容']['券类型名称'] == '类目券'}}">
+      <view class="body">
+        <view class="logo">类</view>
+        <view class="title">类目券</view>
+        <view class="detail">限<text class="light-stress">{{item['优惠内容']['类目名']}}</text>使用</view>
+        <view class="reason strong-stress">{{item['得券原因']}}</view>
+        <view class="bar"></view>
+        <view class="type-1">
+          <!-- 打折类 -->
+          <view class="char">折</view>
+          <view class="integer">{{item['优惠内容']['优惠整数']}}</view>
+          <view class="decimal">.{{item['优惠内容']['优惠小数']}}</view>
+        </view>
+      </view>
+      <view class="button-word">有效期：{{item['有效期']['生效日期']}} 至 {{item['有效期']['失效日期']}}</view>
+      <view class="gap"></view>
+    </view>
+  </block>
+</block>
+
+<view class="ui divider hidden"></view>
+<view class="ui center-link transparent">
+  <text class="small">没有更多券了</text>
+</view>
+<view class="ui divider hidden big"></view>

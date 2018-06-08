@@ -1,0 +1,54 @@
+doctype html
+html
+  head
+    title #{title? title: "UE鲜果 后台管理"}
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/semantic.min.css')
+    link(rel='stylesheet', href='/stylesheets/sweetalert2.min.css')
+    meta(charset='utf8')
+    block stylesheets
+  body
+    .ui.top.menu.huge
+      .ui.container
+        a.item(href="/product")
+          i.ui.icon.food
+          | 商品
+        a.item(href="/order")
+          i.ui.icon.tasks
+          | 订单
+        a.item(href='/statistic')
+          i.ui.icon.browser
+          | 统计
+        a.item(href="/school")
+          i.ui.icon.university
+          | 学校
+        a.item(href="/category")
+          i.ui.icon.cubes
+          | 类目
+        a.item(href="/coupon")
+          i.ui.icon.ticket
+          | 优惠券
+        a.item(href="/message?t=" + new Date().getTime())
+          i.ui.icon.announcement
+          | 重发短信
+        a.item(href="/setting")
+          i.ui.icon.settings
+          | 设置
+        a.item.right(href="/logout")
+          i.ui.icon.sign.out
+          | 退出登录
+
+    block content
+    script(src='https://cdn.bootcss.com/jquery/3.1.1/jquery.min.js')
+    script(src='/stylesheets/semantic.min.js')
+    script(src='/stylesheets/sweetalert2.min.js')
+    script(src='/javascripts/main.js')
+    block javascripts
+    script.
+      if (location.hostname == '127.0.0.1') {
+        document.write(
+          '<script src="http://' + 
+          (location.host || 'localhost').split(':')[0] + 
+          ':35729/livereload.js?snipver=1"></' + 'script>'
+        )
+      }

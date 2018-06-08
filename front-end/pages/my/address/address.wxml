@@ -1,0 +1,27 @@
+<view class="address default">
+  <view class="label round"></view>
+  <view class="label border-left"></view>
+  <view class="label border-bottom"></view>
+  <view class="label text">默认地址</view>
+  <view class="body">
+    <view class="name-phone">{{address["姓名"]}} {{address["电话"]}}</view>
+    <view class="school">{{address["学校"]}}</view>
+    <view class="dormitory-room">{{address["宿舍楼"]}} {{address["宿舍号"]}}</view>
+    <view class="bar"></view>
+    <image class="pencil" src="/images/pencil.png" bindtap="modify_address_default"></image>
+    <view class="edit" bindtap="modify_address_default">编 辑</view>
+  </view>
+</view>
+
+<view class="address spare">
+  <view class="label border-left"></view>
+  <view class="label border-bottom"></view>
+  <view class="body">
+    <view class="name-phone">{{address_spare["姓名"]}} {{address_spare["电话"]}}</view>
+    <view class="school">{{address_spare["学校"]}}</view>
+    <view class="dormitory-room">{{address_spare["宿舍楼"]}} {{address_spare["宿舍号"]}}</view>
+    <view class="bar"></view>
+    <image class="pencil" src="/images/pencil.png" bindtap="modify_address_spare"></image>
+    <view class="edit" bindtap="modify_address_spare">编 辑</view>
+  </view>
+</view>

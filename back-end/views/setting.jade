@@ -1,0 +1,27 @@
+extends layout
+
+block stylesheets
+  link(rel='stylesheet', href='/stylesheets/dropzone.css')
+
+block content
+  .ui.container
+    .ui.grid
+      .ui.row
+        .column
+          .ui.form
+            .field
+              label 营业开始时间
+              input(type="time", name="营业开始时间", value="#{settings.营业时间.开始时间}")
+            .field
+              label 营业结束时间
+              input(type="time", name="营业结束时间", value="#{settings.营业时间.结束时间}")
+            .field
+              label 用户口令
+              input(type="text", name="用户口令")
+            .field
+              button.ui.button.green.large#commit 修改
+
+block javascripts
+  script(src='/javascripts/jquery.md5.js')
+  script(src='/javascripts/setting.js')
+  script(src='/stylesheets/dropzone.js')

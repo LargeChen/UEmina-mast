@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  .ui.container
+    a.ui.button.orange.huge.fluid(href="/school/new") 新增学校
+    for sc in schools
+      .ui.segment
+        h1.ui.header #{sc.学校名}
+        .sub.header 起送价：￥#{sc.起送价}，运费：￥#{sc.运费}
+        h2.ui.header.dividing 宿舍楼
+        .ui.bulleted.list
+          .item
+            for b in sc.宿舍楼
+              | #{b}，
+        h2.ui.header.dividing 交易时段
+        .ui.bulleted.list
+          for p in sc.交易时段
+            .item 下单时段 #{p.下单时段.开始时间} - #{p.下单时段.结束时间}， 
+                | 配送时段 #{p.配送时段.开始时间} - #{p.配送时段.结束时间}
+        h2.ui.header.dividing 其他信息
+        .ui.bulleted.list
+          .item 打印机SN：#{sc.打印机信息.SN码}，打印机KEY：#{sc.打印机信息.KEY}
+          .item 客服电话：#{sc.客服.电话}，客服微信：#{sc.客服.微信}
+        h2.ui.header.dividing 操作
+        a.ui.button.mini(href="/school/update?_id=#{sc._id}") 修改
+        button.ui.button.mini.red(onclick="deleteItem('/school', {'_id':'#{sc._id}'}, '#{sc.学校名}')") 删除

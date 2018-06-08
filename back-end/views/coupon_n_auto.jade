@@ -1,0 +1,66 @@
+extends layout
+
+
+block stylesheets
+  link(rel='stylesheet', href='/stylesheets/coupon.css')
+
+
+mixin coupon_type_line(name, class_name, enabled, require, cut_off, reason, count, validity)
+  input(type='hidden', name='#{name}开启状态', value='#{enabled}')
+  h2.ui.header.dividing #{name}
+  .fields.new
+    .field
+      label 开启
+      .ui.toggle.checkbox(class='#{class_name}')
+        input(type='checkbox', name='#{name}开启')
+        label  
+    .field
+      label 价格要求
+      input(type="number", name="#{name}价格要求", value='#{require}')
+    .field
+      label 价格优惠
+      input(type="number", name="#{name}价格优惠", value='#{cut_off}')
+    .field
+      label 得券原因
+      input(type="text", name="#{name}得券原因", value='#{reason}')
+    .field
+      label 发送数量
+      input(type="number", name="#{name}发送数量", value='#{count}')
+    .field
+      label 有效时长（天）
+      input(type="number", name="#{name}有效时长", value='#{validity}')
+    .field
+      label 操作
+      button.ui.button.green(id="commit-#{class_name}") 修改
+
+block content
+  .ui.container
+    h1.ui.header 自动发券设置
+    .ui.form
+      +coupon_type_line('7天券', '7day', old_settings['七天满减']['开启'],
+         old_settings['七天满减']['价格要求'], old_settings['七天满减']['价格优惠'],
+         old_settings['七天满减']['得券原因'], old_settings['七天满减']['发送数量'],
+         old_settings['七天满减']['有效时长'])
+      +coupon_type_line('14天券', '14day', old_settings['十四天满减']['开启'],
+         old_settings['十四天满减']['价格要求'], old_settings['十四天满减']['价格优惠'],
+         old_settings['十四天满减']['得券原因'], old_settings['十四天满减']['发送数量'],
+         old_settings['十四天满减']['有效时长'])
+      +coupon_type_line('30天券', '30day', old_settings['三十天满减']['开启'],
+         old_settings['三十天满减']['价格要求'], old_settings['三十天满减']['价格优惠'],
+         old_settings['三十天满减']['得券原因'], old_settings['三十天满减']['发送数量'],
+         old_settings['三十天满减']['有效时长'])
+      +coupon_type_line('舍友券', 'roommate', old_settings['舍友满减']['开启'],
+         old_settings['舍友满减']['价格要求'], old_settings['舍友满减']['价格优惠'],
+         old_settings['舍友满减']['得券原因'], old_settings['舍友满减']['发送数量'],
+         old_settings['舍友满减']['有效时长'])
+      +coupon_type_line('新用户券', 'newuser', old_settings['新用户满减']['开启'],
+         old_settings['新用户满减']['价格要求'], old_settings['新用户满减']['价格优惠'],
+         old_settings['新用户满减']['得券原因'], old_settings['新用户满减']['发送数量'],
+         old_settings['新用户满减']['有效时长'])
+      +coupon_type_line('首次付费券', 'firstpay', old_settings['首次付费满减']['开启'],
+         old_settings['首次付费满减']['价格要求'], old_settings['首次付费满减']['价格优惠'],
+         old_settings['首次付费满减']['得券原因'], old_settings['首次付费满减']['发送数量'],
+         old_settings['首次付费满减']['有效时长'])
+
+block javascripts
+  script(src='/javascripts/coupon_n_auto.js')

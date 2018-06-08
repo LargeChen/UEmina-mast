@@ -1,0 +1,44 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/index/detail/detail",
+    "pages/cart/cart",
+    "pages/cart/useCoupon/useCoupon",
+    "pages/my/my",
+    "pages/my/address/address",
+    "pages/my/address/modify/modify",
+    "pages/my/orders/orders",
+    "pages/my/service/service",
+    "pages/my/coupons/coupons",
+    "pages/my/promotions/promotions"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "backgroundColor": "#f2f2f2",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "UE鲜果+",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "selectedColor": "#FAB22D",
+    "color": "#888888",
+    "borderStyle":"black",  
+    "list": [{  
+      "selectedIconPath": "images/index_active.png",  
+      "iconPath": "images/index_default.png",  
+      "pagePath": "pages/index/index",
+      "text": "首页"
+    }, {  
+      "selectedIconPath": "images/cart_active.png",  
+      "iconPath": "images/cart_default.png",  
+      "pagePath": "pages/cart/cart",
+      "text": "购物车"
+    }, {  
+      "selectedIconPath": "images/my_active.png",  
+      "iconPath": "images/my_default.png",  
+      "pagePath": "pages/my/my",
+      "text": "我的"
+    }]
+  },
+  "debug": false
+}

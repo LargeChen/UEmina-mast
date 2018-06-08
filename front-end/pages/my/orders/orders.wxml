@@ -1,0 +1,43 @@
+<block wx:for="{{orders}}" wx:key="unique">
+    <view class="ui divider hidden"></view>
+    <view class="order">
+        <view class="order-time">下单时间 {{item['完成时间']}}</view>
+        <view class="deliver-time">配送时间 {{item['配送时段']['开始时间']}} - {{item['配送时段']['结束时间']}}</view>
+        <view class="note" wx:if="{{item['备注']}}">备注 {{item['备注']}}</view>
+        <view class="ui divider"></view>
+        <view class="address">
+            <text class="position">{{item['配送地址']['学校']}} {{item['配送地址']['宿舍楼']}} {{item['配送地址']['宿舍号']}}</text>
+            <text class="person">{{item['配送地址']['姓名']}} {{item['配送地址']['电话']}}</text>
+        </view>
+        <view class="ui divider dp"></view>
+        <view class="products">
+            <block wx:for="{{item['商品条目']}}" wx:key="unique">
+            <view class="product">
+                <text class="left">{{item['商品名']}}</text>
+                <text class="right">￥{{item['单价']}} x {{item['数量']}}</text>
+            </view>
+            </block>
+        </view>
+        <view class="ui divider"></view>
+        <view class="fare">
+            <view class="coupon-fare" wx:if="{{item['所用优惠券内容']}}">
+                <text class="left">所用优惠券内容</text>
+                <text class="right">{{item['所用优惠券内容']}}</text>
+            </view>
+            <view class="transport-fare">
+                <text class="left">配送费</text>
+                <text class="right">￥{{item['运费']}}</text>
+            </view>
+            <view class="total-fare">
+                <text>合计 </text>
+                <text class="price">￥{{item['支付金额']}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="ui divider"></view>
+    <view class="ui divider"></view>
+</block>
+
+<view class="ui center-link transparent">
+  <text class="small">没有更多订单了</text>
+</view>

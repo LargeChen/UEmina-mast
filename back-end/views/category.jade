@@ -1,0 +1,41 @@
+extends layout
+
+block content
+  .ui.container
+    .ui.form
+      h1.ui.header.dividing 类目管理
+      .three.fields
+        .field
+          label 类目名
+        .field
+          label 权重（越大越靠前）
+        .field
+          label 操作
+      for c in categories
+        .three.fields.category
+          input(type="hidden", name="_id", value="#{c._id}")
+          .field
+            input(name="类目名", value="#{c.类目名}")
+          .field
+            input(type="number", name="权重", value="#{c.权重}")
+          .field
+            button.ui.button.update 修改信息
+            button.ui.button.red(onclick="deleteItem('/category', {'_id':'#{c._id}'}, '#{c.类目名}')") 删除
+
+    .ui.divider.hidden
+
+    .ui.form
+      h1.ui.header.dividing 新增类目
+      .three.fields.new
+        .field
+          label 类目名
+          input(name="类目名")
+        .field
+          label 权重（越大越靠前）
+          input(type="number", name="权重")
+        .field
+          label 操作
+          button.ui.button.green#commit 提交
+
+block javascripts
+  script(src="/javascripts/category.js")

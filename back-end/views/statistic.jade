@@ -1,0 +1,201 @@
+extends layout
+
+block content
+  .ui.container
+     .ui.container#today-order-statistic
+      h1.ui.header #{orders.order.统计日期} 订单统计
+      .ui.toggle.checkbox
+        input(type="checkbox", name="today-order-statistic-detials")
+        label 展示详细内容
+      table.ui.table.celled.statistic-result
+        thead
+          tr
+            th 统计量
+            th 数量
+        tbody
+          tr
+            td 订单总数
+            td #{orders.order.订单总数}
+          tr
+            td 优惠券数
+            td #{orders.order.优惠券数}
+          tr
+            td 营业总额
+            td ￥#{orders.order.营业总额.toFixed(2)}
+          tr
+            td 优惠券总额
+            td ￥#{orders.order.优惠券总额.toFixed(2)}
+          tr
+            td 客单价
+            td ￥#{orders.order.客单价}
+          tr
+            td 详细数据
+            td 
+              for school in orders.order.详细数据
+                .ui.segment
+                  h2.ui.header #{school.学校}
+                  p
+                  | 订单总数：#{school.订单总数}，
+                  | 优惠券数：#{school.优惠券数}，
+                  | 营业总额：￥#{school.营业总额.toFixed(2)}，
+                  | 优惠券总额：￥#{school.优惠券总额.toFixed(2)}，
+                  | 客单价：￥#{school.客单价}
+                  h3.ui.header.dividing 详细数据
+                  .ui.cards
+                    for building in school.详细数据
+                      .ui.card
+                        .content
+                          .header #{building.宿舍楼}
+                        .content
+                          p 订单总数：#{building.订单总数}
+                          p 优惠券数：#{building.优惠券数}
+                          p 营业总额：￥#{building.营业总额.toFixed(2)}
+                          p 优惠券总额：￥#{building.优惠券总额.toFixed(2)}
+                          p 客单价：￥#{building.客单价}
+    .ui.divider.hidden
+
+    .ui.container#today-product-statistic
+      h1.ui.header #{orders.product.统计日期} 商品统计
+      .ui.toggle.checkbox
+        input(type="checkbox", name="today-product-statistic-detials")
+        label 展示详细内容
+      .ui.divider.hidden
+      .ui.field
+        .ui.button.blue.download-csv 下载CSV
+      table.ui.table.celled.statistic-result
+        thead
+          tr
+            th 商品名
+            th 销量
+        tbody
+          for product in orders.product.详细数据
+            tr
+              td #{product.商品名}
+              td #{product.销量}
+    .ui.divider.hidden
+
+    .ui.container#order-statistic
+      h1.ui.header 订单统计
+      .ui.form.grid.row
+        .field.six.fluid.wide.column.start-date
+          label 开始时间
+          input(type='date', name='开始时间')
+        .field.six.fluid.wide.column.end-date
+          label 结束时间
+          input(type='date', name='结束时间')
+      .ui.grid.row
+        .field.six.wide.column.school
+          select.ui.dropdown.fluid.school
+            option(value="") 学校
+            option(value="全选") 全选
+            option(value="合计", selected=true) 合计
+            for sc in schools
+              option(value="#{sc.学校名}") #{sc.学校名}
+        .field.six.wide.column.dormitory
+          select.ui.dropdown.search.fluid.dormitory.disabled
+            option(value="") 宿舍楼           
+        .field.two.wide.column
+          button.ui.button.green.fluid.disabled.check 查询
+      .ui.divider.hidden
+      .ui.container.statistic-result
+
+    .ui.divider.hidden
+
+    .ui.container#user-statistic
+      h1.ui.header 用户统计
+      .ui.grid.row
+        .five.wide.column.school
+          select.ui.dropdown.fluid.school
+            option(value="") 学校
+            for sc in schools
+              option(value="#{sc.学校名}") #{sc.学校名}
+        .five.wide.column.dormitory
+          select.ui.dropdown.fluid.dormitory.disabled
+            option(value="") 宿舍楼
+        .two.wide.column
+          button.ui.button.green.fluid.disabled.check 查询
+      table.ui.table
+        thead
+          tr
+            th 姓名
+            th 宿舍号
+            th 电话
+            th 历史消费总额
+        tbody.users
+    .ui.divider.hidden
+
+    .ui.container#user-analysis
+      h1.ui.header 用户分析
+      .ui.form.grid.row
+        .field.six.fluid.wide.column.date-base
+          label 时间基准（一般为今日）
+          input(type='date', name='时间基准')
+      .ui.grid.row
+        .field.three.wide.column.school
+          select.ui.dropdown.fluid.school
+            option(value="") 学校
+            option(value="合计", selected=true) 合计
+            for sc in schools
+              option(value="#{sc.学校名}") #{sc.学校名}
+        .field.three.wide.column.dormitory
+          select.ui.dropdown.fluid.dormitory.disabled
+            option(value="") 宿舍楼
+        .field.three.wide.column.dimension
+          select.ui.dropdown.fluid.dimension
+            option(value="") 收入维度
+            option(value="7日") 7日
+            option(value="14日") 14日
+            option(value="30日") 30日
+        .two.wide.column
+          button.ui.button.green.fluid.disabled.check 查询
+      .ui.divider.hidden
+      .container.analysis-result
+        .field
+          .ui.button.blue.download-csv 下载CSV
+        table.ui.table
+          thead
+            tr
+              th 用户分类
+              th 学校
+              th 宿舍楼
+              th 人数
+              th 人数占比
+              th 时间基准
+              th 收入维度
+              th 总收入
+              th 收入占比
+              th 订单量
+              th 客单价
+              th 人均消费
+              th 人均订单量
+          tbody
+      .ui.divider.hidden
+
+      .ui.container.everyone-result
+        h3.ui.header 用户详细交易数据表
+        .field
+          .ui.button.blue.download-csv 下载CSV
+        table.ui.table
+          thead
+            tr
+              th 学校
+              th 宿舍
+              th 宿舍号
+              th 名字
+              th 电话
+              th 性别
+              th 用户类型
+              th 时间基准
+              th 收入维度
+              th 消费总额
+              th 订单数
+              th 客单价
+              th 历史订单数
+              th 初次登录日期
+          tbody
+            
+  .ui.divider.hidden
+
+block javascripts
+  script(src='/javascripts/jquery.table2csv.js')
+  script(src='/javascripts/statistic.js')

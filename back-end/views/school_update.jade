@@ -1,0 +1,72 @@
+extends layout
+
+block stylesheets
+  link(rel='stylesheet', href='/stylesheets/dropzone.css')
+
+block content
+  input(type="hidden", name="_id", value="#{school._id}")
+  .ui.container
+    .ui.grid
+      .ui.row
+        .column
+          .ui.form
+            h1.ui.dividing.header 修改学校信息
+            .field
+              label 学校名
+              input(type="text", name="学校名", value="#{school.学校名}")
+            .field
+              label 起送价
+              input(type="number", name="起送价", min="0", value="#{school.起送价}")
+            .field
+              label 运费
+              input(type="number", name="运费", min="0", value="#{school.运费}")
+            .field
+              label 宿舍楼（用中英文逗号分隔）
+              textarea(rows="3", name="宿舍楼")
+                for b in school.宿舍楼
+                  | #{b}, 
+            .fields.two
+              .field
+                label 打印机SN
+                input(type="text", name="打印机SN码", value="#{school.打印机信息.SN码}")
+              .field
+                label 打印机KEY
+                input(type="text", name="打印机KEY", value="#{school.打印机信息.KEY}")
+            .fields.two
+              .field
+                label 客服电话
+                input(type="text", name="客服电话", value="#{school.客服.电话}")
+              .field
+                label 客服微信
+                input(type="text", name="客服微信", value="#{school.客服.微信}")
+            h4.ui.dividing.header 交易时段
+              .ui.label.left.pointing.add-time 新增交易时段
+            .all-times
+              .fields.four.times
+                .field
+                  label 下单开始时间
+                .field
+                  label 下单结束时间
+                .field
+                  label 配送开始时间
+                .field
+                  label 配送结束时间
+                i.icon.ui
+              for t in school.交易时段
+                .fields.four.times
+                  .field
+                    input(type="time", class="place-order time-begin", value="#{t.下单时段.开始时间}")
+                  .field
+                    input(type="time", class="place-order time-end", value="#{t.下单时段.结束时间}")
+                  .field
+                    input(type="time", class="delivery time-begin", value="#{t.配送时段.开始时间}")
+                  .field
+                    input(type="time", class="delivery time-end", value="#{t.配送时段.结束时间}")
+                  i.icon.ui.close
+            .field
+              button.ui.button.green.large#commit 提交
+              a.ui.button.gray.small(href="/school") 放弃
+
+block javascripts
+  script(src='/javascripts/school_update.js')
+  script(src='/stylesheets/dropzone.js')

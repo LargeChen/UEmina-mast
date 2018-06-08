@@ -1,0 +1,90 @@
+//- 用于生成统计页面的订单列表
+//- 一个result就是一行，等价于row
+h2.ui.header 查询结果
+.ui.container#total-result
+  h3.ui.header.field 总表
+  .field
+    .ui.button.blue.download-csv 下载CSV
+  table.ui.table.total
+    thead
+      tr
+        th 学校
+        th 宿舍楼
+        th 订单数
+        th 销售总额（元）
+        th 客单价（元）
+        th 下单用户数
+        th 平均单数
+    tbody.orders
+      for r in result.result_total
+        tr
+          td #{r["学校"]}
+          td #{r["宿舍楼"]}
+          td #{r["订单数"]}
+          td #{r["销售总额"]}
+          td #{r["客单价"]}
+          td #{r["下单用户数"]}
+          td #{r["平均单数"]}
+          
+.ui.divider.hidden
+
+.ui.container#everyday-result
+  h3.ui.header 分日期表
+  .field
+    .ui.button.blue.download-csv 下载CSV
+  table.ui.table.everyday
+    thead
+      tr
+        th 时间
+        th 学校
+        th 宿舍楼
+        th 订单数
+        th 销售总额（元）
+        th 客单价（元）
+        th 下单用户数
+        th 平均单数
+    tbody.orders
+      each results in result.results_everyday
+        each r in results
+          tr
+            td #{r["开始日期"]}
+            td #{r["学校"]}
+            td #{r["宿舍楼"]}
+            td #{r["订单数"]}
+            td #{r["销售总额"]}
+            td #{r["客单价"]}
+            td #{r["下单用户数"]}
+            td #{r["平均单数"]}
+
+.ui.divider.hidden
+
+.ui.container#everyorder-result
+  h3.ui.header 详细交易数据表
+  .field
+    .ui.button.blue.download-csv 下载CSV
+  table.ui.table.everyorder
+    thead
+      tr
+        th 时间
+        th 学校
+        th 宿舍楼
+        th 名字
+        th 性别
+        th 电话
+        th 配送时间
+        th 金额（元）
+        th 用券情况
+        th openid
+    tbody.orders
+      each r in result.results_everyorder
+        tr
+          td #{r['时间']}
+          td #{r['学校']}
+          td #{r['宿舍楼']}
+          td #{r['名字']}
+          td #{r['性别']}
+          td #{r['电话']}
+          td #{r['配送时间']}
+          td #{r['金额']}
+          td #{r['用券情况']}
+          td #{r['openid']}

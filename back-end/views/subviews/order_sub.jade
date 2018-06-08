@@ -1,0 +1,56 @@
+//- 用于生成order页的订单列表的HTML
+
+for order in orders
+  .ui.segment
+    table.ui.very.basic.celled.table
+      thead
+        th.two.wide 属性
+        th 值
+      tbody
+        tr
+          td 订单状态
+          td= order.订单状态
+        tr
+          td 配送地址
+          - var addr = order.配送地址
+          td #{addr.学校}-#{addr.宿舍楼}-#{addr.宿舍号} #{addr.姓名} #{addr.电话}
+        tr
+          td 创建时间
+          td #{order.创建时间.toLocaleDateString()} #{order.创建时间.toLocaleTimeString('en-US', {hour12: false})}
+        tr
+          td 所用优惠券
+          td #{ order.优惠券_id ? coupons_table.get(order.优惠券_id.toString()).getNameSync() : "无" }
+        tr
+          td 商品条目
+          td
+            table.ui.very.basic.table
+              thead
+                th 商品名
+                th 单价
+                th 数量
+                th 总价
+              tbody
+                for product in order.商品条目
+                  tr
+                    td= product.商品名
+                    td ￥#{product.单价}
+                    td= product.数量
+                    td ￥#{product.单价 * product.数量}
+                tr
+                  td 商品总价
+                  td 
+                  td 
+                  td ￥#{order.商品总价}
+                tr
+                  td 运费
+                  td 
+                  td 
+                  td ￥#{order.运费}
+                tr
+                  td 支付金额
+                  td 
+                  td 
+                  td ￥#{order.支付金额}
+        tr
+          td 备注
+          td= order.备注

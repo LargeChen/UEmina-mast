@@ -1,0 +1,21 @@
+//- 用于生成coupon_statistic页的订单列表的HTML
+
+table.ui.very.basic.celled.table.cp-statistic
+  thead
+    th 时间
+    th 优惠券类型
+    th 发放量
+    th 曝光量
+    th 曝光率
+    th 使用量
+    th 曝光使用率
+  tbody
+    for result in statistic_results
+      tr
+        td= result.时间
+        td= result.优惠券类型
+        td= result.发放量
+        td= result.曝光量
+        td= result.曝光率
+        td= result.使用量
+        td= result.曝光使用率

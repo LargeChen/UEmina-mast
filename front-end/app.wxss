@@ -1,0 +1,289 @@
+/**app.wxss**/
+/*@import 'styles/weui.wxss'*/
+/* 全局的背景默认为灰色 */
+page {
+  background-color: #f2f2f2;
+}
+
+/* 无图标带箭头的链接 */
+navigator.ui.link {
+  width: 100%;
+  height: 100rpx;
+
+  background-color: white;
+  position: relative;
+}
+
+navigator.ui.link > text.title {
+  height: 36rpx;
+  
+  font-size: 36rpx;
+  line-height: 36rpx;
+  color: #353535;
+
+  position: absolute;
+  left: 30rpx;
+  top: 32rpx;
+}
+
+navigator.ui.link > text.operation {
+  height: 32rpx;
+  
+  font-size: 32rpx;
+  line-height: 32rpx;
+  color: #b2b2b2;
+
+  position: absolute;
+  right: 66rpx;
+  top: 35rpx;
+}
+
+navigator.ui.link > text.operation.active {
+  color: #f5a422;
+}
+
+navigator.ui.link > .arrow:after,
+.ui.picker > picker .arrow:after {
+  content: " ";
+  display: inline-block;
+  height: 16rpx;
+  width: 16rpx;
+  border-width: 4rpx 4rpx 0 0;
+  border-color: #c7c7cc;
+  border-style: solid;
+  -webkit-transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+          transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+
+  position: absolute;
+  top: 42rpx;
+  right: 30rpx;
+}
+
+/* 有图标带箭头的链接 */
+navigator.ui.link.icon > image {
+  height: 48rpx;
+  width: 48rpx;
+
+  position: absolute;
+  top: 26rpx;
+  left: 33rpx;
+}
+
+navigator.ui.link.icon > text.title {
+  height: 36rpx;
+  
+  font-size: 36rpx;
+  line-height: 48rpx;
+  color: #353535;
+
+  position: absolute;
+  left: 104rpx;
+  top: 26rpx;
+}
+
+navigator.ui.link > text.operation {
+  height: 32rpx;
+  
+  font-size: 32rpx;
+  line-height: 1.13;
+  color: #b2b2b2;
+
+  position: absolute;
+  right: 66rpx;
+  top: 35rpx;
+}
+
+navigator.ui.link > .arrow:after,
+.ui.picker > picker .arrow:after {
+  content: " ";
+  display: inline-block;
+  height: 16rpx;
+  width: 16rpx;
+  border-width: 4rpx 4rpx 0 0;
+  border-color: #c7c7cc;
+  border-style: solid;
+  -webkit-transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+          transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+
+  position: absolute;
+  top: 42rpx;
+  right: 30rpx;
+}
+
+/* 分割线 透明的 */
+.ui.divider.hidden {
+  box-sizing: border-box;
+  padding: 10rpx;
+  width: 100%;
+}
+/* 分割线 很细的 */
+.ui.divider {
+  height: 1rpx;
+  width: 100%;
+  background-color: #ebebeb;
+}
+/* 分割线 透明的 很大的 */
+.ui.divider.hidden.big {
+  box-sizing: border-box;
+  padding: 30rpx;
+  width: 100%;
+}
+
+
+/* 系统内置选择器 */
+.ui.picker,
+.ui.input {
+  width: 100%;
+  height: 100rpx;
+
+  background-color: white;
+  position: relative;
+}
+
+.ui.picker > .label,
+.ui.input > .label {
+  height: 36rpx;
+  line-height: 36rpx;
+  font-size: 36rpx;
+  color: #353535;
+
+  position: absolute;
+  top: 32rpx;
+  left: 30rpx;
+}
+
+.ui.picker > picker {
+  width: 590rpx;
+  height: 100rpx;
+
+  position: absolute;
+  top: 0;
+  left: 160rpx;
+}
+
+.ui.picker.left > picker .picker {
+  width: 590rpx;
+  height: 32rpx;
+  line-height: 32rpx;
+  font-size: 32rpx;
+
+  padding-top: 34rpx;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.ui.picker.right > picker .picker {
+  width: 590rpx;
+  height: 32rpx;
+  line-height: 32rpx;
+  font-size: 32rpx;
+
+  padding-top: 34rpx;
+  padding-right: 66rpx;
+
+  text-align: right;
+
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+/* 单行输入框 */
+.ui.input > input {
+  width: 590rpx;
+  height: 100rpx;
+
+  font-size: 32rpx;
+
+  position: absolute;
+  top: 0;
+  left: 160rpx;
+
+  z-index: 0;
+}
+
+/* 小号的单行输入框  */
+.ui.input.small {
+  height: 70rpx;
+}
+.ui.input.small > .label {
+  height: 70rpx;
+  line-height: 70rpx;
+  font-size: 24rpx;
+
+  position: absolute;
+  top: 0rpx;
+  left: 35rpx;
+  color: #565656;
+}
+.ui.input.small > input {
+  width: 590rpx;
+
+  height: 70rpx;
+  font-size: 24rpx;
+  line-height: 70rpx;
+
+  position: absolute;
+  top: 0;
+  left: 100rpx;
+
+  color: #888888;
+}
+
+/* 图片不可用时，显示灰色 */
+image.ui.disabled {
+  filter: grayscale(100%);  
+}
+
+
+/* 不带图标箭头的按钮 */
+navigator.ui.center-link,
+view.ui.center-link,
+.button.ui.center-link {
+  width: 750rpx;
+  height: 100rpx;
+
+  background-color: white;
+  position: relative;
+
+  text-align: center;
+}
+
+navigator.ui.center-link.transparent,
+view.ui.center-link.transparent
+{
+  background-color: inherit;
+}
+
+navigator.ui.center-link > text,
+view.ui.center-link > text,
+.button.ui.center-link > text {
+  height: 34rpx;
+  font-size: 34rpx;
+  line-height: 100rpx;
+  color: #b2b2b2;
+
+
+  margin: 0 auto;
+}
+
+navigator.ui.center-link > text.small,
+view.ui.center-link > text.small
+{
+  height: 30rpx;
+  font-size: 30rpx;
+}
+
+navigator.ui.center-link  text.orange,
+view.ui.center-link  text.orange
+{
+  color: #f5a422;
+}
+
+navigator.ui.link.transparent,
+view.ui.link.transparent
+{
+  background-color: inherit;
+}

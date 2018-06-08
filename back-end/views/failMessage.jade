@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  .ui.container
+    a.button.ui.blue#resend-all 重发未处理短信
+    table.ui.table.celled
+      thead
+        tr
+          th 时间
+          th 电话号码
+          th 内容
+          th 详情
+          th 状态
+          th 操作
+      tbody
+        for message in messages
+          tr
+            td= message.时间.toLocaleDateString() + " " + message.时间.toLocaleTimeString()
+            td= message.电话
+            td(title="#{message.内容}")= message.内容.slice(0, 12) + "..."
+            td(title="#{message.详情}")= message.详情.slice(0, 12) + "..."
+            if message.已处理
+              td.status 已处理
+            else
+              td.status.need-action 未处理
+            td
+              a.button.ui.set-done(_id=message._id, set-to="#{!message.已处理}") 改变状态
+block javascripts
+  script(src='/javascripts/failmessage.js')

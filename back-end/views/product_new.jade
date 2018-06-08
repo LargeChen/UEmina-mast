@@ -1,0 +1,78 @@
+extends layout
+
+block stylesheets
+  link(rel='stylesheet', href='/stylesheets/dropzone.css')
+
+block content
+  .ui.container
+    .ui.grid
+      .ui.row
+        .column
+          .ui.form
+            h1.ui.dividing.header 新增商品
+            .field
+              label 商品名
+              input(type="text", name="商品名")
+            .field
+              label 权重
+              input(type="number", name="权重")
+            .field
+              label 单价
+              input(type="number", name="单价")
+            .fields.three
+              .field
+                label 库存
+                input(type="number", name="库存")
+                
+              .field
+                label 默认库存
+                input(type="number", name="默认库存")
+                
+              .field
+                label 重置开关
+                .ui.checkbox.toggle.reset-toggle
+                  input(type="checkbox", name="重置开关")
+                  label 开启一键重置成默认库存
+            .field
+              label 每日特惠
+              .ui.checkbox.toggle.sale
+                input(type="checkbox", name="每日特惠")
+                label 加入每日特惠
+            .field
+              label 类目
+              select.ui.fluid.dropdown.category
+                option(value="") 类目
+                for c in categories
+                  option(value="#{c.类目名}") #{c.类目名}
+            .field
+              label 导购语
+              input(type="text", name="导购语")
+            .field
+              label 标签
+              select.ui.fluid.dropdown.labels
+                option(value="无") 无
+                option(value="新") 新
+                option(value="荐") 荐
+                option(value="爆") 爆
+            h4.ui.dividing.header 规格
+              .ui.label.left.pointing.add-attr 新增规格
+            .all-attrs
+              .two.fields.attrs
+                .field
+                  label 属性
+                .field
+                  label 值
+                i.icon.ui
+            .field
+              label 缩略图
+              form.ui.dropzone#thumbnails(action='/api/upload/img')
+            .field
+              label 详情图
+              form.ui.dropzone#detials-map(action='/api/upload/img')
+            .field
+              button.ui.button.green.large#commit 提交
+              a.ui.button.gray.small(href="/product") 放弃
+
+block javascripts
+  script(src='/stylesheets/dropzone.js')
+  script(src='/javascripts/product_new.js')

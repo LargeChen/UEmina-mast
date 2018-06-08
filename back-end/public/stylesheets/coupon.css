@@ -1,0 +1,7 @@
+.row.coupon-form.hidden {
+    display: none !important;
+}
+
+.ui.header.hidden {
+    display: none !important;
+}

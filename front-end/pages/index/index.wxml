@@ -1,0 +1,161 @@
+<!--index.wxml-->
+<view class="top">
+  <image wx:if="{{openning}}" style="width: 76rpx; height: 33rpx;" src="/images/open.png"></image>
+  <image wx:else style="width: 95rpx; height: 33rpx;" src="/images/closed.png"></image>
+  <text class="business-hours {{openning? '': 'closed'}}"> 营业时间 {{ business_hours }} </text>
+</view>
+<swiper wx:if="{{banners && banners.length>0}}" class="banner" indicator-dots="true" indicator-active-color="#FAB027"
+  autoplay="true" interval="3000" circular="true">
+  <block wx:for="{{banners}}" wx:key="unique">
+    <swiper-item>
+      <navigator wx:if="{{item.target && item.target.length > 0}}" url="{{item.target}}">
+        <image src="{{serverUrl + item.url}}" class="banner-image"/>
+      </navigator>
+      <image wx:else src="{{serverUrl + item.url}}" class="banner-image"/>
+    </swiper-item>
+  </block>
+</swiper>
+<scroll-view scroll-x="true" class="middle" scroll-into-view="{{menu_index}}">
+  <block wx:for-items="{{ menu }}" wx:key="unique">
+    <view id="menu-{{index}}" class="scroll-btn {{ item == now_menu ? 'active' : '' }} flex-wrap" style="flex-direction:column"
+      bindtap="menuSwitchClick" data-name="{{ item }}">
+      <view data-name="{{ item }}">{{ item }}</view>
+      <view wx:if="{{ item == now_menu }}" class="btn-buttom-bar"></view>
+    </view>
+  </block>
+</scroll-view>
+<!-- style="height: {{ clientHeight?clientHeight+'px':'auto' }}" -->
+<scroll-view class="touch-pack" scroll-x="true"> 
+  <block wx:if="{{loadingProducts}}">
+    <view class="loading-products">
+      鲜果搬运中...
+    </view>
+  </block>
+  <block wx:else>
+    <!-- <view class="fake-touch-item"></view> -->
+    <view id="touch-logic-view" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd">
+      <!-- style="height: {{ clientHeight?clientHeight+'px':'auto' }}" -->
+      <scroll-view class="bottom" scroll-y="true"  scroll-top="{{scrollTop}}"
+        enable-back-to-top="true">
+        <block wx:for-items="{{ now_product_list }}" wx:key="unique">
+          <view class="product" data-name="{{item['商品名']}}" bindtap="openDetailPage">
+            <image src="{{ serverUrl + item['缩略图'][0] }}" mode="aspectFill"></image>
+            <view class="info">
+              <view class="name">{{ item['商品名'] }}</view>
+              <view class="price">￥{{ item['单价'] }}</view>
+              <view class="description">{{ item['导购语'] }}</view>
+              <view class="tags">
+                <view wx:if="{{ item['每日特惠'] }}" class="tag preferential">
+                  <image src="/images/tag_preferential.png" style="width: 74rpx; height: 36rpx;"></image>
+                </view>
+                <view wx:if="{{ item['标签'] == '爆' }}" class="tag hot">
+                  <image src="/images/tag_hot.png" style="width: 55rpx; height: 36rpx;"></image>
+                </view>
+                <view wx:if="{{ item['标签'] == '新' }}" class="tag new">
+                  <image src="/images/tag_new.png" style="width: 55rpx; height: 36rpx;"></image>
+                </view>
+                <view wx:if="{{ item['标签'] == '荐' }}" class="tag recommended">
+                  <image src="/images/tag_recommended.png" style="width: 55rpx; height: 36rpx;"></image>
+                </view>
+              </view>
+              <!-- 购买图标（购物车）-->
+              <view wx:if="{{ item['库存']==0 }}" class="no-available">
+                已售罄
+              </view>
+              <view wx:elif="{{ item['库存']!==0 && !cart[item['商品名']] }}" class="buttons">
+                <view class="first" catchtap="addToCartClick" data-product_name="{{ item['商品名'] }}">
+                  <image class="first" src="/images/first.png" style="width: 76rpx; height: 76rpx;"></image>
+                </view>
+              </view>
+              <!-- 增减商品图标 -->
+              <view wx:if="{{ cart[item['商品名']] }}" class="buttons">
+                <view class="added">
+                  <image class="plus" src="/images/plus.png" style="width: 54rpx; height: 54rpx;" catchtap="addOneClick" data-product_name="{{ item['商品名'] }}"></image>
+                  <view class="number">{{ cart[item['商品名']] }}</view>
+                  <image class="minus" src="/images/minus.png" style="width: 54rpx; height: 54rpx;" catchtap="subOneClick" data-product_name="{{ item['商品名'] }}"></image>
+                </view>
+              </view>
+              <!-- 分割线 -->
+              <view class="divider"></view>
+            </view>
+          </view>
+        </block>
+      </scroll-view>
+    </view>
+    <!-- <view class="fake-touch-item"></view> -->
+  </block>
+</scroll-view>
+<view class="cover-background" wx:if="{{hasUsefulCoupon && cover_bg_loaded && cover_fg_loaded}}" catchtap="closeCouponsCover">
+  <view class="cover-content {{coupons_useful.length == 1? 'one': 'multi'}}" bindtap="closeCouponsCover">
+    <image wx:if="{{coupons_useful.length == 1}}" bindload="coverBgBind" class="cover-bg-img" src='/images/coupon-bg-one.png'></image>
+    <image wx:else bindload="coverBgBind" class="cover-bg-img" src='/images/coupon-bg.png'></image>
+    <scroll-view class="cover-scroll" scroll-y="true">
+      <block wx:for="{{coupons_useful}}" wx:key="unique">
+        <view class="coupon" wx:if="{{item['优惠内容']['券类型名称'] == '满减券'}}">
+          <view class="body">
+            <view class="gap"></view>
+            <view class="logo">减</view>
+            <view class="title">满减券</view>
+            <view class="detail">全场可用</view>
+            <view class="reason strong-stress">{{item['得券原因']}}</view>
+            <view class="bar"></view>
+            <view class="type-0">
+              <!-- 满减类 -->
+              <view class="money">
+                <view class="currency">￥</view>
+                <view class="integer">{{item['优惠内容']['优惠整数']}}</view>
+                <view class="decimal" wx:if="{{item['优惠内容']['优惠小数'] != 0}}">.{{item['优惠内容']['优惠小数']}}</view>
+              </view>
+              <view class="require">满{{item['优惠内容']['价格要求']}}元可用</view>
+            </view>
+          </view>
+          <view class="button-word">有效期：{{item['有效期']['生效日期']}} 至 {{item['有效期']['失效日期']}}</view>
+        </view>
+
+        <view class="coupon" wx:if="{{item['优惠内容']['券类型名称'] == '商品券'}}">
+          <view class="body">
+            <view class="gap"></view>
+            <view class="logo">品</view>
+            <view class="title">商品券</view>
+            <view class="detail">限
+              <text class="light-stress">{{item['优惠内容']['商品名']}}</text>使用</view>
+            <view class="reason strong-stress">{{item['得券原因']}}</view>
+            <view class="bar"></view>
+            <view class="type-1">
+              <!-- 打折类 -->
+              <view class="money">
+                <view class="integer">{{item['优惠内容']['优惠整数']}}</view>
+                <view class="decimal">.{{item['优惠内容']['优惠小数']}}</view>
+                <view class="char">折</view>
+              </view>
+            </view>
+          </view>
+          <view class="button-word">有效期：{{item['有效期']['生效日期']}} 至 {{item['有效期']['失效日期']}}</view>
+        </view>
+
+        <view class="coupon" wx:if="{{item['优惠内容']['券类型名称'] == '类目券'}}">
+          <view class="body">
+            <view class="gap"></view>
+            <view class="logo">类</view>
+            <view class="title">类目券</view>
+            <view class="detail">限
+              <text class="light-stress">{{item['优惠内容']['类目名']}}</text>使用</view>
+            <view class="reason strong-stress">{{item['得券原因']}}</view>
+            <view class="bar"></view>
+            <view class="type-1">
+              <!-- 打折类 -->
+              <view class="money">
+                <view class="integer">{{item['优惠内容']['优惠整数']}}</view>
+                <view class="decimal">.{{item['优惠内容']['优惠小数']}}</view>
+                <view class="char">折</view>
+              </view>
+            </view>
+          </view>
+          <view class="button-word">有效期：{{item['有效期']['生效日期']}} 至 {{item['有效期']['失效日期']}}</view>
+        </view>
+      </block>
+    </scroll-view>
+    <image class="cover-fg-img" src='/images/coupon-fg.png' bindload="coverFgBind"></image>
+    <view class="bottom-text">立即使用</view>
+  </view>
+</view>

@@ -1,0 +1,165 @@
+.address {
+  width: 690rpx;
+  height: 330rpx;
+  margin: 0 30rpx;
+
+  border-bottom-left-radius: 10rpx;
+
+  margin-top: 50rpx;
+
+  position: relative;
+
+  overflow: hidden;
+}
+
+.address .label.round {
+  width: 700rpx;
+  height: 700rpx;
+  border-radius: 700rpx;
+
+  background: linear-gradient(45deg, #ff7b0d 70%,#ffe42b 84%);
+
+  position: absolute;
+  left: -300rpx;
+  bottom: -300rpx;
+}
+
+.address .label.border-left {
+  width: 20rpx;
+  height: 310rpx;
+
+  background: linear-gradient(to bottom, #ff7b0d 9%,rgb(255, 221, 0) 100%);
+
+  position: absolute;
+  left: 0;
+  top: 60rpx;
+}
+
+.address .label.border-bottom {
+  width: 680rpx;
+  height: 30rpx;
+
+  background: linear-gradient(to right, rgb(255, 221, 0) 8%,#FFEE7C 100%);
+
+  position: absolute;
+  left: 10rpx;
+  bottom: 0;
+}
+
+.address .label.text {
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 40rpx;
+
+  color: white;
+
+  position: absolute;
+  left: 40rpx;
+  top: 0;
+}
+
+/* 默认地址的body */
+.address .body {
+  width: 680rpx;
+  height: 265rpx; /* 330rpx - 10rpx - top */
+
+  background-color: white;
+
+  margin: 0;
+
+  position: relative;
+  top: 60rpx;
+  left: 10rpx;
+}
+
+.body .name-phone {
+  height: 38rpx;
+  font-size: 38rpx;
+
+  color: #585858;
+
+  position: absolute;
+  top: 70rpx;
+  left: 50rpx;
+}
+
+.body .school {
+  height: 35rpx;
+  font-size: 35rpx;
+
+  color: #808080;
+
+  position: absolute;
+  top: 150rpx;
+  left: 50rpx;
+}
+
+.body .dormitory-room {
+  height: 35rpx;
+  font-size: 35rpx;
+
+  color: #585858;
+
+  position: absolute;
+  top: 150rpx;
+  right: 270rpx;
+
+  text-align: right;
+}
+
+.body .bar {
+  width: 1rpx;
+  height: 140rpx;
+
+  background-color: rgba(128, 128, 128, 0.50);
+
+  position: absolute;
+  top: 60rpx;
+  right: 200rpx;
+}
+
+.body .pencil {
+  width: 100rpx;
+  height: 100rpx;
+
+  position: absolute;
+  top: 50rpx;
+  right: 50rpx;
+}
+
+.body .edit {
+  width: 100rpx;
+  height: 34rpx;
+  font-size: 34rpx;
+  line-height: 34rpx;
+
+  color: #fab027;
+
+  text-align: justify;
+  position: absolute;
+  top: 170rpx;
+  right: 50rpx;
+}
+/* 为了单行文字justify */
+.body .edit:after{
+	display:inline-block;
+	content:'';
+	overflow:hidden;
+	width:100%;
+	height:0;
+}
+
+/* 备用地址 不显示那些炫酷的边框 */
+.address.spare {
+  margin-top: -25rpx;
+}
+
+.address.spare .label.border-left {
+  background: none;
+  background-color: white;
+}
+
+.address.spare .label.border-bottom {
+  background: none;
+  background-color: white;
+}

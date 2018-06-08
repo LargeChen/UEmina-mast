@@ -1,0 +1,114 @@
+<!-- 如果购物车为空 -->
+<view class="empty" wx:if="{{cart.length == 0}}">
+  <view class="empty_tab">
+    <image src="/images/cart_empty.png"></image>
+    <text> 新鲜优质的水果快上车~ </text>
+  </view>
+  <view class="info_tab">
+    <text>- 鹏步科技提供技术支持 -</text>
+  </view>
+</view>
+<!-- 购物车不为空 -->
+<view class="not-empty" wx:else>
+  <view class="ui divider hidden"></view>
+  <!-- 假设有学校即可以送，由地址页面保证地址数据完整 -->
+  <view wx:if="{{addr_school}}" class="address box">
+    <view class="select-default {{select_spare_address? '': 'hidden'}}" bindtap="toggle_addr">切换默认</view>
+    <view class="vertical divider"></view>
+    <view class="modify" bindtap="modify_addr">
+      <view class="position">{{ addr_school || '未填写' }} {{ addr_dor || '未填写' }} {{ addr_room || '未填写' }}</view>
+      <view class="person">{{ addr_name || '未填写' }} {{ addr_phone || '未填写' }}</view>
+    </view>
+    <view class="vertical divider"></view>
+    <view class="select-spare {{select_spare_address? 'hidden': ''}}" bindtap="toggle_addr">切换备用</view>
+  </view>
+  <navigator wx:else class="ui link" url="/pages/my/address/address">
+    <text class="title">配送地址</text>
+    <text class="operation">填写</text>
+    <text class="arrow"></text>
+  </navigator>
+  <view class="ui divider"></view>
+
+  <view class="ui picker right deliver">
+    <text class="label">配送时间</text>
+    <picker bindchange="DeliverChange" value="{{dt_index}}" range="{{deliver_times}}" disabled="{{!addr_school}}">
+      <view wx:if="{{!addr_school}}" class="no-addr">请先填写地址</view>
+      <view wx:elif="{{!deliver_times.length}}" class="no-addr">错过下单时间啦</view>
+      <view wx:else class="picker orange">
+        {{dt_index != -1? deliver_times[dt_index]: "选择时段"}}
+      </view>
+      <view class="arrow"></view>
+    </picker>
+  </view>
+  <view class="ui divider"></view>
+
+  <navigator url="/pages/cart/useCoupon/useCoupon" class="ui link">
+    <text class="title">我的果券</text>
+    <text class="operation" wx:if="{{!coupons_useful}}">无可用果券</text>
+    <text class="operation active" wx:if="{{coupons_useful && coupon == null}}">点击选择</text>
+    <text class="operation active" wx:if="{{coupon != null}}">{{coupon.text}}</text>
+    <text class="arrow"></text>
+  </navigator>
+
+  <view class="ui hidden divider"></view>
+
+
+  <view class="order-title">
+    <text>订单详情</text>
+  </view>
+  <!-- 物品开始 -->
+  <block wx:for="{{cart}}" wx:key="unique">
+    <view class="item">
+      <image src="{{serverUrl + item['缩略图'][0]}}" mode="aspectFill"></image>
+      <view class="info">
+        <view class="name">{{item['商品名']}}</view>
+        <view class="price">￥{{item['单个商品总价'] || item['单价'] * item['购买量']}}</view>
+        <view class="buttons">
+          <view class="added">
+            <image class="plus" src="/images/plus.png" bindtap="addOneClick" data-product_name="{{ item['商品名'] }}"></image>
+            <view class="number">{{item['购买量']}}</view>
+            <image class="minus" src="/images/minus.png" bindtap="subOneClick" data-product_name="{{ item['商品名'] }}"></image>
+          </view>
+        </view>
+        <view class="divider"></view>
+      </view>
+    </view>
+  </block>
+  <view class="total-cart">
+    <text>
+      <text>商品总价 </text>
+      <text class="price">￥{{cart_total}}</text>
+    </text>
+  </view>
+  <view class="coupon-line" hidden="{{coupon_current_discount === 0}}">
+    <view class="coupon-logo">券</view>
+    <text class="coupon-type">{{coupon['优惠内容']['券类型名称']}}</text>
+    <text class="coupon-price">-￥{{coupon_current_discount}}</text>
+  </view>
+
+  <view class="ui divider"></view>
+  <view class="ui input small">
+    <text class="label">备注</text>
+    <input class="note-input" placeholder="有啥要告诉小二的？" type="text" maxlength="30" bindinput="noteChange" value="{{note_msg}}"
+    />
+  </view>
+  <view class="ui divider"></view>
+  <!-- 物品结束 -->
+
+  <view class="bottom-blank"></view>
+
+  <view class="bottom">
+    <!-- 判断价格，决定是否起送，是否收运费 -->
+    <view class="tip" wx:if="{{cart_total >= min_total}}">满{{min_total}}元，免配送费</view>
+    <view class="tip" wx:else>不满{{min_total}}元，
+      <text class="red">配送费{{transport_fare}}元</text>
+    </view>
+    <view class="price">
+      <text>
+        <text>合计 </text>
+        <text class="num">￥{{total_price}}</text>
+      </text>
+    </view>
+    <image class="ui {{ pay_btn_status }}" src="/images/btn_pay.png" bindtap="clickPay"></image>
+  </view>
+</view>

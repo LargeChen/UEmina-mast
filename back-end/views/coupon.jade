@@ -1,0 +1,32 @@
+extends layout
+
+
+block content
+  .ui.container
+    h1.ui.header 手动发放优惠券
+    .ui.grid
+      .ui.row
+        .column.four.wide
+          a.ui.button.big.fuild.green(href="/coupon/coupon_n_by_type") 按用户类型发放
+        .column.four.wide
+          a.ui.button.big.fuild.green(href="/coupon/coupon_n_by_phone") 填写用户手机号发放
+        .column.four.wide
+          a.ui.button.big.fuild.green(href="/coupon/coupon_n_by_userid") 选择用户进行发放
+    
+    h1.ui.header 自动发券设置
+    .ui.grid
+      .ui.row
+        .column.three.wide
+          a.ui.button.big.fuild.blue(href="/coupon/coupon_n_auto") 更新设置
+
+    h1.ui.header 优惠券统计
+    .ui.grid
+      .ui.row
+        //- .column.three.wide
+        //-   a.ui.button.big.fuild.orange(href="/coupon/coupon_manage") 管理（不存在的）
+        .column.three.wide
+          a.ui.button.big.fuild.orange(href="/coupon/coupon_statistic") 统计
+
+
+block javascripts
+  script(src='/javascripts/jquery.md5.js')

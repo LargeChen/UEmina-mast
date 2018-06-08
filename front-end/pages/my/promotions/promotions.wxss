@@ -1,0 +1,56 @@
+page {
+  width: 750rpx;
+}
+
+.title {
+  width: 100%;
+  text-align: center;
+  margin: 30rpx 0 20rpx 0;
+  
+  font-size: 40rpx;
+  font-weight: 600;
+  letter-spacing: 4rpx;
+
+  color: #f7ad23;
+}
+
+.title.light {
+  font-weight: 400;
+  letter-spacing: 0;
+  margin: 30rpx 0 40rpx 0;
+}
+
+.sub-title {
+  width: 100%;
+  text-align: center;
+  margin: 10rpx 0 30rpx 0;
+
+  font-size: 30rpx;
+  
+  color: #585858;
+}
+
+.paragraph {
+  width: 690rpx;
+  margin: 0 30rpx 30rpx 30rpx;
+  box-sizing: border-box;
+
+  border-radius: 20rpx;
+  padding: 10rpx 50rpx 50rpx 50rpx;
+
+  background-color: white;
+}
+
+.content {
+  width: 100%;
+  margin: 20rpx 0;
+
+  font-size: 30rpx;
+  
+  color: #585858;
+}
+
+.content.small {
+  margin-top: 0;
+  font-size: 26rpx;
+}

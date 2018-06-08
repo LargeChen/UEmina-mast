@@ -1,0 +1,91 @@
+extends layout
+
+
+block stylesheets
+  link(rel='stylesheet', href='/stylesheets/coupon.css')
+
+
+block content
+  .ui.container
+    h1.ui.header 按手机号发放
+    .ui.grid
+      .row
+        .five.wide.column
+          .ui.form
+            .field
+              label 手机号列表
+              textarea(rows=20, placeholder="一行一个，不要留空行，只会匹配到默认地址的手机号", name="phone-numbers")
+      .row
+        .four.wide.column.coupon-type
+          select.ui.dropdown.fluid.coupon-type
+            option(value="") 券类型
+            option(value="1") 满减券
+            option(value="2") 商品券
+            option(value="3") 类目券
+      .row
+        .column
+          .ui.form
+            .fields.three
+              .field
+                label 生效日期
+                input(type='date', name='生效日期')
+              .field
+                label 失效日期
+                input(type='date', name='失效日期')
+              .field
+                label 得券原因
+                input(type='text', name='得券原因', placeholder='建议6个字以内')
+      .row
+        .column
+          .ui.form
+            .field
+              label 每人发放量
+              input(type="number", name="每人发放量", placeholder="默认为1", value='1')
+      .row
+        .column
+          .ui.checkbox.big.send-notice
+            input(type="checkbox", name="是否通知")
+            label.green 短信通知得券用户
+    
+    h2.ui.header.hidden 填写优惠券详情
+    .ui.grid
+      .row.coupon-form.coupon-type-1.hidden
+        .column.five.wide
+          .ui.form
+            .field
+              label 价格要求
+              input(type="number", name="价格要求", placeholder="RMB")
+            .field
+              label 价格优惠
+              input(type="number", name="价格优惠", placeholder="RMB")
+            .field
+              button.ui.button.green.large#create-type-1-coupon 发放满减券
+      .row.coupon-form.coupon-type-2.hidden
+        .column.five.wide
+          .ui.form
+            .field.product-name
+              label 商品名
+              select.ui.search.dropdown.fluid.product-name
+                option(value="") 商品名
+            .field
+              label 折扣
+              input(type="number", name="商品券折扣", placeholder="0.89 意为打89折")
+            .field
+              button.ui.button.green.large#create-type-2-coupon 发放商品券
+      .row.coupon-form.coupon-type-3.hidden
+        .column.five.wide
+          .ui.form
+            .field.category-name
+              label 类目名
+              select.ui.search.dropdown.fluid.category-name
+                option(value="") 类目名
+            .field
+              label 折扣
+              input(type="number", name="类目券折扣", placeholder="0.89 意为打89折")
+            .field
+              button.ui.button.green.large#create-type-3-coupon 发放类目券
+
+block javascripts
+  script(src='/javascripts/jquery.md5.js')
+  script(src="/javascripts/coupon_n.js")
+  script(src="/javascripts/coupon_n_by_phone.js")

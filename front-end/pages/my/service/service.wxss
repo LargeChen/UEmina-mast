@@ -1,0 +1,94 @@
+/* 空的购物车 */
+page {
+  background-color: white;
+}
+image.big {
+    height: 220rpx;
+    width: 280rpx;
+
+    position: absolute;
+    top: 140rpx;
+    left: 235rpx;
+}
+text.big {
+    height: 28rpx;
+    width: 100%;
+
+    font-size: 32rpx;
+    line-height: 0.88;
+    text-align: center;
+    color: #353535;
+
+    position: absolute;
+    top: 380rpx;
+}
+.ui.divider.big {
+    position: absolute;
+    top: 488rpx;
+}
+
+image.wx {
+    height: 26rpx;
+    width: 32rpx;
+
+    position: absolute;
+    top: 614rpx;
+    left: 321rpx;
+}
+
+text.wx.title {
+  height: 32rpx;
+  font-size: 32rpx;
+  line-height: 1;
+  text-align: left;
+  color: #b2b2b2;
+
+  position: absolute;
+  top: 610rpx;
+  left: 365rpx;
+}
+
+text.wx.info {
+  width: 100%;
+  height: 48rpx;
+  font-size: 48rpx;
+  line-height: 1;
+  text-align: center;
+  color: #000000;
+
+  position: absolute;
+  top: 665rpx;
+}
+
+image.phone {
+    height: 26rpx;
+    width: 32rpx;
+
+    position: absolute;
+    top: 795rpx;
+    left: 322rpx;
+}
+
+text.phone.title {
+  height: 32rpx;
+  font-size: 32rpx;
+  line-height: 1;
+  text-align: left;
+  color: #b2b2b2;
+
+  position: absolute;
+  top: 794rpx;
+  left: 364rpx;
+}
+
+text.phone.info {
+  width: 100%;
+  height: 48rpx;
+  font-size: 48rpx;
+  line-height: 1;
+  text-align: center;
+  color: #F5A422;
+
+  position: absolute;
+  top: 847rpx;
+}

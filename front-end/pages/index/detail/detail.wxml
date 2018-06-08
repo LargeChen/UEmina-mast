@@ -1,0 +1,42 @@
+<!--detail.wxml-->
+<!-- 用于单个商品的详情 -->
+<swiper indicator-dots="true">
+  <block wx:for="{{imgUrls}}" wx:key="unique">
+    <swiper-item>
+      <image src="{{serverUrl + item}}" mode="aspectFill"></image>
+    </swiper-item>
+  </block>
+</swiper>
+
+<view class="top">
+  <view class="name">{{name}}</view>
+  <view class="description">{{description}}</view>
+  <view class="price">￥{{price}}</view>
+  <!-- 库存 -->
+  <!-- <view class="inventory">库存: {{inventory}}</view> -->
+</view>
+
+<view class="ui divider hidden"></view>
+
+<view wx:if="{{attrs.length}}" class="header">产品规格</view>
+
+<block wx:for="{{attrs}}" wx:key="unique">
+  <view class="attribute">{{item['属性名称']}}: {{item['属性值']}}</view>
+  <view class="ui divider"></view>
+</block>
+
+<view wx:if="{{detail_imgs.length}}" class="header">更多详情</view>
+
+<view class="detail-imgs">
+  <block wx:for="{{detail_imgs}}" wx:key="unique">
+    <image src="{{serverUrl + item}}" style="width:100%; height: {{imageHeight[item]}}rpx;" bindload="imageLoad" data-id="{{item}}"></image>
+  </block>
+</view>
+
+<view class="bottom-margin"></view>
+<view class="bottom">
+  <image wx:if="{{cart_count == 0}}" src="/images/cart_grey.png" class="cart-img" bindtap="toCart"></image>
+  <image wx:else src="/images/cart_orange.png" class="cart-img" bindtap="toCart"></image>
+  <view class="num {{cart_count? 'orange': ''}}" bindtap="toCart">{{cart_count}}</view>
+  <image src="/images/btn_add_to_cart.png" class="add ui {{inventory? '': 'disabled'}}" bindtap="add_to_cart"></image>
+</view>

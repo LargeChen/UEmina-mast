@@ -1,0 +1,12 @@
+<image class="big" src="/images/service_big.png"></image>
+<text class="big">有问题请联系小U哦~</text>
+
+<view class="ui divider big"></view>
+
+<image class="wx" src="/images/service_wx.png"></image>
+<text class="wx title">微信</text>
+<text class="wx info">{{wechat}}</text>
+
+<image class="phone" src="/images/service_phone.png"></image>
+<text class="phone title">电话</text>
+<text class="phone info" bindtap="call_service">{{phone}}</text>

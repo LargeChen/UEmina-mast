@@ -1,0 +1,41 @@
+extends layout
+
+
+block content
+  .ui.container.cp-statistic
+    h1.ui.header 优惠券统计
+    .ui.form
+      .fields
+        .field
+          label 开始时间
+          input(type='date', name='开始时间')
+        .field
+          label 结束时间
+          input(type='date', name='结束时间')
+        .field
+          label 发券途径
+          select.ui.dropdown.fluid.coupon-way
+            option(value="自动") 自动
+            option(value="手动") 手动
+        .field
+          label 操作
+          .ui.button.green#query-static 查询！
+        .field#download-field
+          label 下载
+          .ui.button.blue.disabled#download-csv-button CSV
+    table.ui.very.basic.celled.table.cp-statistic
+      thead
+        th 时间
+        th 优惠券类型
+        th 发放量
+        th 曝光量
+        th 曝光率
+        th 使用量
+        th 曝光使用率
+      tbody
+          
+
+block javascripts
+  script(src='/javascripts/jquery.table2csv.js')
+  script(src='/javascripts/jquery.md5.js')
+  script(src='/javascripts/coupon_statistic.js')

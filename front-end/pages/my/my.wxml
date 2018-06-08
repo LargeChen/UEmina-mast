@@ -1,0 +1,46 @@
+<!--my.wxml-->
+<view class="container">
+  <view class="userinfo">
+    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+  </view>
+
+  <view class="ui divider"></view>
+  <view class="buttons">
+    <navigator url="/pages/my/coupons/coupons" class="ui link icon">
+      <image src="/images/my_coupons.png"></image>
+      <text class="title">我的果券</text>
+      <text class="operation"></text>
+      <text class="arrow"></text>
+    </navigator>
+    <view class="ui divider"></view>
+    <navigator url="/pages/my/address/address" class="ui link icon">
+      <image src="/images/my_address.png"></image>
+      <text class="title">我的地址</text>
+      <text class="operation"></text>
+      <text class="arrow"></text>
+    </navigator>
+    <view class="ui divider"></view>
+    <navigator url="/pages/my/orders/orders" class="ui link icon">
+      <image src="/images/my_order.png"></image>
+      <text class="title">我的订单</text>
+      <text class="operation"></text>
+      <text class="arrow"></text>
+    </navigator>
+    <!-- <view class="ui divider"></view>
+    <navigator url="/pages/my/promotions/promotions" class="ui link icon">
+      <image src="/images/my_promotions.png"></image>
+      <text class="title">福利攻略</text>
+      <text class="operation"></text>
+      <text class="arrow"></text>
+    </navigator> -->
+    <view class="ui divider"></view>
+    <navigator url="/pages/my/service/service" class="ui link icon">
+      <image src="/images/my_service.png"></image>
+      <text class="title">联系客服</text>
+      <text class="operation"></text>
+      <text class="arrow"></text>
+    </navigator>
+    <view class="ui divider"></view>
+  </view>
+</view>

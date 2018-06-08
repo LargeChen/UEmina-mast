@@ -1,0 +1,91 @@
+extends layout
+
+block content
+  .ui.container
+    a.ui.button.teal.huge.fluid#reset-inventory() 重置库存
+    .ui.divider
+    //- 遍历一个两重的dict
+    each pros_and_categories, pro_status in product_classified
+      h2.ui.header.green= pro_status
+      //- 再遍历一个按类目归类的dict
+      each pros, category in pros_and_categories
+        h3.ui.header= category
+        .ui.cards.link.six.doubling
+          for pro in pros
+            .ui.card
+              a.image(href='/product/update?_id=#{pro._id}', target="_blank")
+                if pro.缩略图.length
+                  img.ui.image.mini(src="/productImages/#{pro._id}/#{pro.缩略图[0]}")
+                else
+                  img.ui.image.mini(src="/images/image.png")
+              .content
+                a.header(href='/product/update?_id=#{pro._id}')= pro.商品名
+                .meta= '￥' + pro.单价 + ' ， ' + pro.库存 + '份'
+                if pro.重置开关
+                  .meta= '可重置库存为' + pro.默认库存 + '份'
+    .ui.divider
+    //- for pro in products
+    //-   .ui.segment(id = pro._id)
+    //-     table.ui.very.basic.celled.table
+    //-       thead
+    //-         th.two.wide 属性
+    //-         th 值
+    //-       tbody
+    //-         tr
+    //-           td 商品名
+    //-           td 
+    //-             span= pro.商品名
+    //-             unless pro.在售
+    //-               .ui.label.basic.black 已下架
+    //-             unless pro.标签 == '无'
+    //-               .ui.label.orange.basic= pro.标签
+    //-             if pro.每日特惠
+    //-               .ui.label.green.basic 每日特惠
+    //-         tr
+    //-           td 单价
+    //-           td ￥#{ pro.单价 }
+    //-         tr
+    //-           td 权重
+    //-           td= pro.权重
+    //-         tr
+    //-           td 库存
+    //-           td= pro.库存
+    //-         tr
+    //-           td 类目
+    //-           td= pro.类目
+    //-         tr
+    //-           td 导购语
+    //-           td= pro.导购语
+    //-         tr
+    //-           td 规格
+    //-           td 
+    //-             for g in pro.规格
+    //-               | #{g.属性名称}: #{g.属性值} <br/>
+    //-         tr
+    //-           td 缩略图
+    //-           td
+    //-             .ui.images
+    //-               for im in pro.缩略图
+    //-                 img.ui.image.small(src="/productImages/#{pro._id}/#{im}")
+    //-         tr
+    //-           td 详情图
+    //-           td
+    //-             .ui.images
+    //-               for im in pro.详情图
+    //-                 img.ui.image.small(src="/productImages/#{pro._id}/#{im}")
+    //-         tr
+    //-           td 操作
+    //-           td 
+    //-             a.button.ui.button(href="/product/update?_id=#{pro._id}") 修改
+    //-             if pro.在售
+    //-               button.ui.button.orange(onclick="removeFromShelf('#{pro._id}')") 下架
+    //-             else
+    //-               button.ui.button.teal(onclick="putOnShelf('#{pro._id}')") 上架
+    //-             button.ui.button.red(onclick="deleteItem('/product', {'_id':'#{pro._id}'}, '#{pro.商品名}')") 删除
+
+    a.ui.button.green.huge.fluid(href="/product/new") 新增商品
+    .ui.divider
+  .ui.divider.hidden
+
+block javascripts
+  script(src='/javascripts/product.js')

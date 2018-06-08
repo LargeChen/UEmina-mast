@@ -1,0 +1,74 @@
+<view class="ui divider hidden"></view>
+<view class="button ui center-link" bindtap="clearCoupon">
+  <text>不使用优惠券</text>
+</view>
+
+<block wx:for="{{coupons_useful}}" wx:key="unique">
+  <view class="coupon" data-cpindex="{{index}}" bindtap="selectCoupon" wx:if="{{item['优惠内容']['券类型名称'] == '满减券'}}">
+    <view class="body">
+      <view class="active" wx:if="{{item['_id'] == current_coupon_id}}"></view>
+      <view class="gap"></view>
+      <view class="logo">减</view>
+      <view class="title">满减券</view>
+      <view class="detail">全场可用</view>
+      <view class="reason strong-stress">{{item['得券原因']}}</view>
+      <view class="bar"></view>
+      <view class="type-0">
+        <!-- 满减类 -->
+        <view class="currency">￥</view>
+        <view class="money">
+          <view class="integer">{{item['优惠内容']['优惠整数']}}</view>
+          <view class="decimal" wx:if="{{item['优惠内容']['优惠整数'] < 10}}">.{{item['优惠内容']['优惠小数']}}</view>
+        </view>
+        <view class="require">满{{item['优惠内容']['价格要求']}}元可用</view>
+      </view>
+    </view>
+    <view class="button-word">有效期：{{item['有效期']['生效日期']}} 至 {{item['有效期']['失效日期']}}</view>
+  </view>
+
+  <view class="coupon" data-cpindex="{{index}}" bindtap="selectCoupon" wx:if="{{item['优惠内容']['券类型名称'] == '商品券'}}">
+    <view class="body">
+      <view class="active" wx:if="{{item['_id'] == current_coupon_id}}"></view>
+      <view class="gap"></view>
+      <view class="logo">品</view>
+      <view class="title">商品券</view>
+      <view class="detail">限
+        <text class="light-stress">{{item['优惠内容']['商品名']}}</text>使用</view>
+      <view class="reason strong-stress">{{item['得券原因']}}</view>
+      <view class="bar"></view>
+      <view class="type-1">
+        <!-- 打折类 -->
+        <view class="char">折</view>
+        <view class="integer">{{item['优惠内容']['优惠整数']}}</view>
+        <view class="decimal">.{{item['优惠内容']['优惠小数']}}</view>
+      </view>
+    </view>
+    <view class="button-word">有效期：{{item['有效期']['生效日期']}} 至 {{item['有效期']['失效日期']}}</view>
+  </view>
+
+  <view class="coupon" data-cpindex="{{index}}" bindtap="selectCoupon" wx:if="{{item['优惠内容']['券类型名称'] == '类目券'}}">
+    <view class="body">
+      <view class="active" wx:if="{{item['_id'] == current_coupon_id}}"></view>
+      <view class="gap"></view>
+      <view class="logo">类</view>
+      <view class="title">类目券</view>
+      <view class="detail">限
+        <text class="light-stress">{{item['优惠内容']['类目名']}}</text>使用</view>
+      <view class="reason strong-stress">{{item['得券原因']}}</view>
+      <view class="bar"></view>
+      <view class="type-1">
+        <!-- 打折类 -->
+        <view class="char">折</view>
+        <view class="integer">{{item['优惠内容']['优惠整数']}}</view>
+        <view class="decimal">.{{item['优惠内容']['优惠小数']}}</view>
+      </view>
+    </view>
+    <view class="button-word">有效期：{{item['有效期']['生效日期']}} 至 {{item['有效期']['失效日期']}}</view>
+  </view>
+</block>
+
+<view class="ui divider hidden"></view>
+<navigator url="/pages/my/coupons/coupons" class="ui center-link transparent">
+  <text class="small">没有更多券了 <text class="orange">查看所有果券</text></text>
+</navigator>
+<view class="ui divider hidden"></view>

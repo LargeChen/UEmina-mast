@@ -1,0 +1,34 @@
+extends layout
+
+block content
+  .ui.container
+    .ui.grid
+      .row
+        .two.wide.column.school
+          select.ui.dropdown.fluid.school
+            option(value="") 学校
+            for sc in schools
+              option(value="#{sc.学校名}") #{sc.学校名}
+        .three.wide.column.period
+          select.ui.dropdown.fluid.period.disabled
+            option(value="") 配送时段
+        .three.wide.column.dormitory
+          select.ui.dropdown.fluid.dormitory.disabled
+            option(value="") 宿舍楼
+        .two.wide.column
+          .ui.buttons
+            button.ui.button.green.disabled.check.now 今日
+            button.ui.button.disabled.check.old 所有
+        .two.wide.column
+          button.ui.button.yellow.fluid.disabled.print 打印订单
+        .two.wide.column
+          //- button.ui.button.orange.fluid.disabled.message-text 第一短信
+          button.ui.button.orange.fluid.disabled.wx-order-notice 微信通知
+        .two.wide.column
+          button.ui.button.orange.fluid.disabled.message-text-yunpian 云片短信
+    .ui.divider.hidden
+    .orders.list
+
+block javascripts
+  script(src="/javascripts/order.js")
+

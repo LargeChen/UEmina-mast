@@ -1,0 +1,40 @@
+/**my.wxss**/
+page {
+  background-color: white;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 80rpx 0;
+  box-sizing: border-box;
+}
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 200rpx;
+  height: 200rpx;
+  /*margin: 20rpx;*/
+  border-radius: 50%;
+  box-shadow: 0rpx 20rpx 50rpx gray;
+}
+
+.userinfo-nickname {
+  height: 48rpx;
+  /*font-family: PingFangSC;*/
+  font-size: 48rpx;
+  text-align: center;
+  margin-top: 40rpx;
+  margin-bottom: 120rpx;
+}
+
+.user-operations {
+    margin-top: 120rpx;
+}

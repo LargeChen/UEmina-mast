@@ -1,0 +1,18 @@
+<view class="title">UE鲜果强势回归！</view>
+<view class="sub-title">本次更新将给各位果友带来更多的福利，优惠多多。</view>
+<view class="paragraph">
+    <view class="title.light">【开学优惠】</view>
+    <view class="content">暑假过后，庆幸你还记得小U。</view>
+    <view class="content">下单用户会获得果券，快来吃吃水果吧！</view>
+</view>
+<view class="paragraph">
+    <view class="title.light">【新果友特惠】</view>
+    <view class="content">校园里又出现一批新面孔了，</view>
+    <view class="content">来跟小U做朋友吧，超大果券已放入账户~</view>
+</view>
+<view class="paragraph">
+    <view class="title.light">【舍友共享】</view>
+    <view class="content">邀请舍友，首次下单即可获赠果券，</view>
+    <view class="content">拉上好友来找小U吧。</view>
+    <view class="content.small">（配送地址一定要填写宿舍号哦）</view>
+</view>

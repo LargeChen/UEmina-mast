@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  .ui.grid.centered
+    .row.main
+      .column.three.wide
+        h1.ui.header 输入口令：
+    .row
+      .column.three.wide
+        .ui.left.icon.input.fluid
+          input#password(type='password', autofocus)
+          i.key.icon
+    //- - var message = "口令错误"
+    .row#message(style="display: none;")
+      .column.three.wide
+        .ui.message.mini.red 口令错误
+    .row
+      .column.three.wide
+        button#confirm.ui.button.fluid.huge 登录
+block stylesheets
+  link(rel='stylesheet', href='/stylesheets/login.css')
+block javascripts
+  script(src='https://cdn.bootcss.com/blueimp-md5/2.6.0/js/md5.min.js')
+  script(src='/javascripts/login.js')

@@ -1,0 +1,16 @@
+{
+  apps : [
+    {
+      name      : "UEMINA",
+      script    : "app.js",
+      // watch     : ["views", "routes", "storage", "!public"],
+      watch     : true,
+      ignore_watch : ["node_modules", "public/uploaded/tempImages", "public/productImages/**/*"],
+      // ignore_watch : ["node_modules", "public/uploaded/tempImages"],
+      "watch_options": {
+        "followSymlinks": false
+      },
+      
+    }
+  ]
+}

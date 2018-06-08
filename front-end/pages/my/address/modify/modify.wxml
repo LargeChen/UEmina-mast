@@ -1,0 +1,53 @@
+<view class="ui divider hidden"></view>
+<view class="ui picker left">
+  <text class="label">学校</text>
+  <picker bindchange="SchoolChange" value="{{sc}}" range="{{schools}}">
+    <view class="picker">
+      {{sc != -1? schools[sc]: "请选择"}}
+    </view>
+    <view class="arrow"></view>
+  </picker>
+</view>
+<view class="ui divider"></view>
+
+<view class="ui picker left">
+  <text class="label">宿舍楼</text>
+  <picker bindchange="DormitoryChange" value="{{dor}}" range="{{dormitories}}">
+    <view class="picker">
+      {{dor != -1? dormitories[dor]: "请选择"}}
+    </view>
+    <view class="arrow"></view>
+  </picker>
+</view>
+<view class="ui divider"></view>
+
+<view class="ui input">
+  <text class="label">宿舍号</text>
+  <input placeholder="请输入宿舍号" type="text" maxlength="50" bindinput="RoomChange" value="{{room}}" />
+</view>
+
+<view class="ui divider hidden"></view>
+
+<view class="ui input">
+  <text class="label">姓名</text>
+  <input placeholder="请输入姓名" type="text" maxlength="50" bindinput="NameChange" value="{{name}}" />
+</view>
+
+<view class="ui divider"></view>
+
+<view class="ui input">
+  <text class="label">电话</text>
+  <input placeholder="请输入电话" type="text" maxlength="20" bindinput="PhoneChange" value="{{phone}}" />
+</view>
+
+<view class="ui divider"></view>
+
+<view bindtap="check_set" class="select-as-default" wx:if="{{target === 'spare'}}">
+  <view class="text">选为默认地址</view>
+  <view class="box checked" wx:if="{{set_default_check}}">√</view>
+  <view class="box" wx:else></view>
+</view>
+
+<view class="commit" bindtap="addressSaveClick">
+  <image src="/images/btn_save.png"></image>
+</view>
